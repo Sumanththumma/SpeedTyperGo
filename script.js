@@ -1,5 +1,6 @@
 paraDisplay = document.getElementById("paracontainer");
 const inputField = document.getElementById('input');
+const submitbtn = document.getElementById("submit-btn");
 const paras = [
     "He had disappointed himself more than anyone else. That wasn't to say that he hadn't disappointed others. The fact was that he had disappointed a lot of people who were close to him. The fact that they were disappointed in him was something that made him even more disappointed in himself. Yet here he was, about to do the exact same things that had caused all the disappointment in the first place because he didn't know what else to do.",
     "Twenty-five years Dana had been waiting. She tried to be patient during that time but she hadn't always managed to be as patient as she'd like. But today the opportunity had finally come. The thing she always imagined would make her the happiest person in the world was about to happen. She didn't know why at this specific time she all of a sudden felt sick inside.",
@@ -19,15 +20,25 @@ const randomPara = () =>{
 let newText = randomPara();
 paraDisplay.textContent = newText;
 
-inputField.addEventListener("keydown",()=>{
+inputField.addEventListener("input",()=>{
 
     const startTime = new Date();
-    const isCorrect = inputField.value.startsWith(newText);
-    if(!isCorrect){
-        inputField.classList.add("text-red-500");
+    
+    if(paraDisplay.textContent.startsWith(inputField.value)){
+
+        inputField.classList.remove("text-red-500");
     }
     else{
-        inputField.classList.remove('text-red-500');
+
+        inputField.classList.add("text-red-500")
     }
-    
+    if(paraDisplay.textContent === inputField.value){
+        inputField.disabled = true;
+        const endTime = new Date();
+        const timeElapsed = (endTime - startTime)/1000;
+        const words  = paraDisplay.textContent.split(" ").length;
+        const wpm = Math.round((words/timeElapsed)*60);
+        paraDisplay.textContent = `Your Typing Speed is : ${wpm}WPM`
+    }
 })
+
