@@ -9,20 +9,25 @@ const paras = [
 ];
 
 
-   
-
-
+inputField.focus();
 
 const randomPara = () =>{
-    const text = paras[Math.floor(Math.random()*5)];
-    return text;
+    let text = paras[Math.floor(Math.random()*5)];
+    return text.replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g, '').toLowerCase();
 }
 
-paraDisplay.textContent = randomPara();
+let newText = randomPara();
+paraDisplay.textContent = newText;
 
 inputField.addEventListener("keydown",()=>{
-    let timeElapsed = 0;
-    let time = setInterval((timeElapsed)=>{
-        timeElapsed++;
-    },1000);
+
+    const startTime = new Date();
+    const isCorrect = inputField.value.startsWith(newText);
+    if(!isCorrect){
+        inputField.classList.add("text-red-500");
+    }
+    else{
+        inputField.classList.remove('text-red-500');
+    }
+    
 })
