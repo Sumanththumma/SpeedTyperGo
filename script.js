@@ -67,7 +67,7 @@ inputField.addEventListener("input",()=>{
             <p class="text-center text-3xl font-bold mb-5">🎉 well done</p>
             <div id="stats-data">
                 <h1 class="text-2xl font-bold mb-2">Typing speed: <span class="text-4xl text-green-500">${wpm}</span> wpm</h1>
-                <h1 class="text-2xl font-bold mb-3">Total time taken: <span class="text-4xl text-green-500">${timeElapsed}s</span></h1>
+                <h1 class="text-2xl font-bold mb-3">Total time taken: <span class="text-4xl text-green-500">${Math.round(timeElapsed)}s</span></h1>
             </div>
           <button class="bg-green-500 px-3 py-2 text-xl text-white font-bold rounded-md shadow-md" onclick="refreshpg()">Replay</button>
        `
